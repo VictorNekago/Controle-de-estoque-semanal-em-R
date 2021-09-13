@@ -51,7 +51,7 @@ while (Contador <=7) {
       }
       
       #mascara 2 vendida
-      if (TipoMascara==2){
+      else if (TipoMascara==2){
         Vendas <- readline(prompt="Quantas mascaras do tipo 2 foram vendidas hoje?: ")
         Vendas<- as.numeric(Vendas)
         #Impossibilitando venda de Mascaras , se nao houver estoque suficiente
@@ -65,7 +65,7 @@ while (Contador <=7) {
       }
       
       #mascara 3 foi vendida
-      if (TipoMascara==3){
+      else if (TipoMascara==3){
         Vendas <- readline(prompt="Quantas máscaras do tipo 3 foram vendidas hoje?: ")
         Vendas<- as.numeric(Vendas)
         #Impossibilitando venda de mascaras , se nao houver estoque suficiente
@@ -95,19 +95,18 @@ while (Contador <=7) {
       }
       
       #mascara 2 foi adicionada
-      if (TipoMascara==2){
+      else if (TipoMascara==2){
         Estoque <- readline(prompt="Quantas máscaras do tipo 2 foram adicionadas hoje?: ")
         Estoque<- as.numeric(Estoque)
         Mascara2 = Mascara2 + Estoque
       }
       
       #mascara 3 foi adicionada
-      if (TipoMascara==3){
+      else if (TipoMascara==3){
         Estoque <- readline(prompt="Quantas máscaras do tipo 3 foram adicionadas hoje?: ")
         Estoque<- as.numeric(Estoque)
         Mascara3 = Mascara3+Estoque
       }
-      
       
       else {
         print("Tipo de mascaras inválida")
@@ -121,3 +120,15 @@ while (Contador <=7) {
   
   Contador = Contador + 1
 }
+
+# Criando um conjunto de dados
+Dias_da_Semana <- c(rep("Dia 1" , 3) , rep("Dia 2" , 3) , rep("Dia 3" , 3) , rep("Dia 4" , 3),rep("Dia 5" , 3),rep("Dia 6" , 3),rep("Dia 7" , 3))
+Tipos_Mascara <- rep(c("mascaras 1" , "mascaras 2" , "mascaras 3"))
+
+#atribuindo valor aos eixos do grafico
+Vendas=c(VMascara1[1],VMascara2[1],VMascara3[1],VMascara1[2],VMascara2[2],VMascara3[2],VMascara1[3],VMascara2[3],VMascara3[3],VMascara1[4],VMascara2[4],VMascara3[4],VMascara1[5],VMascara2[5],VMascara3[5],VMascara1[6],VMascara2[6],VMascara3[6],VMascara1[7],VMascara2[7],VMascara3[7])
+data <- data.frame(Dias_da_Semana,Tipos_Mascara,Vendas)
+
+# Criando o grafico utilizando a biblioteca ggplot2 
+ggplot(data, aes(fill=Tipos_Mascara, y=Vendas, x=Dias_da_Semana)) + 
+  geom_bar(position="dodge", stat="identity")
